@@ -46,6 +46,7 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.example_status_persistence_file_path = "spec/examples.txt"
   config.disable_monkey_patching!
+  config.expose_dsl_globally = true
 
 =begin
   # These two settings work together to allow you to limit a spec run
