@@ -27,9 +27,12 @@ describe OneUpApp::User do
     end
   end
 
-  context "creation" do
-    When(:giver_name) { giver.name }
-    Then { giver_name == "giver" }
+  context "user management" do
+    context "creation" do
+      Given(:user) { OneUpApp::User.new(name: "user") }
+      When(:user_name) { user.name }
+      Then { user_name == "user" }
+    end
   end
 
 end

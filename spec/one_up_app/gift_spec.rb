@@ -50,14 +50,42 @@ describe OneUpApp::Gift do
       And { expect(receiver.gifts_received.first).to eq gift }
     end
 
-    context "gift knows from whom they were given" do
+    context "gift behaviors" do
       When { giver.give(receiver, gift: gift) }
-      Then { gift.given_by == giver}
+
+      context "gift knows from whom they were given" do
+        Then { gift.given_by == giver}
+      end
+
+      context "gift knows to whom they were given" do
+        Then { gift.received_by == receiver}
+      end
+
+      context "gift knows how to present itself" do
+        Then { gift.to_s == "giver gave receiver Lots of love on 2015-11-28.\nThanks for listening :)\n" }
+      end
+    end
+  end
+
+  context "gift management" do
+    Given(:gift_class) { OneUpApp::Gift }
+
+    context "creating a gift" do
+      When(:gift) { gift_class.create(gift_options) }
+      Then { gift.description == gift_options[:description] }
     end
 
-    context "gift knows to whom they were given" do
-      When { giver.give(receiver, gift: gift) }
-      Then { gift.received_by == receiver}
+    context "gifts are added to a list of previously created gifts" do
+      Given { gift_class.clear_all }
+      When(:gift) { gift_class.create(gift_options) }
+      Then { gift_class.all.count == 1 }
+      And { gift_class.all.first == gift }
+    end
+
+    context "clearing the gift list" do
+      Given{ gift_class.create(gift_options) }
+      When { gift_class.clear_all }
+      Then { gift_class.all.empty? }
     end
   end
 end
