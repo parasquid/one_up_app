@@ -4,8 +4,6 @@ module OneUpApp
   class User
     attr_reader :gifts_given, :gifts_received, :name
 
-    include OneUpApp::Contexts::Crud
-
     def initialize(name:)
       @gifts_given = []
       @gifts_received = []

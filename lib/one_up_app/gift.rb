@@ -5,8 +5,6 @@ module OneUpApp
     attr_reader :description, :image_url, :message, :date_given
     attr_accessor :given_by, :received_by
 
-    include OneUpApp::Contexts::Crud
-
     def initialize(description:, image_url:, message:, date_given: Time.now)
       @description = description
       @image_url = image_url

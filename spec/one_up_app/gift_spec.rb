@@ -68,7 +68,7 @@ describe OneUpApp::Gift do
   end
 
   context "gift management" do
-    Given(:gift_class) { OneUpApp::Gift }
+    Given(:gift_class) { OneUpApp::Gift.extend(OneUpApp::Contexts::Crud::ClassMethods) }
 
     context "creating a gift" do
       When(:gift) { gift_class.create(gift_options) }

@@ -28,7 +28,7 @@ describe OneUpApp::User do
   end
 
   context "user management" do
-    Given(:user_class) { OneUpApp::User }
+    Given(:user_class) { OneUpApp::User.extend(OneUpApp::Contexts::Crud::ClassMethods) }
 
     context "creating a user" do
       When(:user) { user_class.create(name: "user") }
