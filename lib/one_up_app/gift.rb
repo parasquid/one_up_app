@@ -1,22 +1,11 @@
+require_dependency "one_up_app/contexts/crud"
+
 module OneUpApp
   class Gift
     attr_reader :description, :image_url, :message, :date_given
     attr_accessor :given_by, :received_by
 
-    @@list = []
-
-    def self.create(args)
-      @@list << (element = self.new(args))
-      element
-    end
-
-    def self.all
-      @@list
-    end
-
-    def self.clear_all
-      @@list = []
-    end
+    include OneUpApp::Contexts::Crud
 
     def initialize(description:, image_url:, message:, date_given: Time.now)
       @description = description

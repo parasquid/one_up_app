@@ -28,10 +28,24 @@ describe OneUpApp::User do
   end
 
   context "user management" do
-    context "creation" do
-      Given(:user) { OneUpApp::User.new(name: "user") }
-      When(:user_name) { user.name }
-      Then { user_name == "user" }
+    Given(:user_class) { OneUpApp::User }
+
+    context "creating a user" do
+      When(:user) { user_class.create(name: "user") }
+      Then { user.name == "user" }
+    end
+
+    context "users are added to a list of previously created users" do
+      Given { user_class.clear_all }
+      When(:user) { user_class.create(name: "user") }
+      Then { user_class.all.count == 1 }
+      And { user_class.all.first == user }
+    end
+
+    context "clearing the user list" do
+      Given{ user_class.create(name: "user") }
+      When { user_class.clear_all }
+      Then { user_class.all.empty? }
     end
   end
 
