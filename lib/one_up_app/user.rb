@@ -2,18 +2,24 @@ require_dependency "one_up_app/gift"
 
 module OneUpApp
   class User
+    attr_reader :gifts_given, :gifts_received, :name
+
+    def initialize(name:)
+      @gifts_given = []
+      @gifts_received = []
+      @name = name
+    end
+
     def give(receiver, gift:)
+      receiver.receive(gift)
+      gift.given_by = self
+      @gifts_given << gift
     end
 
-    def gifts_given
-      [""]
+    def receive(gift)
+      gift.received_by = self
+      @gifts_received << gift
     end
 
-    def gifts_received
-      [""]
-    end
   end
 end
-
-require_dependency "one_up_app/giver"
-require_dependency "one_up_app/receiver"
