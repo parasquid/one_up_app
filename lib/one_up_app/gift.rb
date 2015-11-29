@@ -3,19 +3,19 @@ module OneUpApp
     attr_reader :description, :image_url, :message, :date_given
     attr_accessor :given_by, :received_by
 
-    @@gifts = []
+    @@list = []
 
-    def self.create(gift_options)
-      @@gifts << (gift = self.new(gift_options))
-      gift
+    def self.create(args)
+      @@list << (element = self.new(args))
+      element
     end
 
     def self.all
-      @@gifts
+      @@list
     end
 
     def self.clear_all
-      @@gifts = []
+      @@list = []
     end
 
     def initialize(description:, image_url:, message:, date_given: Time.now)
