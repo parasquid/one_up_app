@@ -11,9 +11,9 @@ describe OneUpApp::Profile do
   end
 
   context "gift listing" do
-    it "returns a list of gifts" do
-      expect(subject.list_gifts).not_to be nil
-      expect(subject.list_gifts).to respond_to(:each)
+    it "returns a list of gifts received" do
+      expect(subject.gifts_received).not_to be nil
+      expect(subject.gifts_received).to respond_to(:each)
     end
   end
 end

@@ -38,6 +38,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec'
   gem 'guard-rspec'
+  gem 'rspec-given'
 end
 
 group :development do

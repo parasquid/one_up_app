@@ -1,6 +1,6 @@
 module OneUpApp
   class Profile
-    def list_gifts
+    def gifts_received
       []
     end
   end
