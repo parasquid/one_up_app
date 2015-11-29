@@ -24,7 +24,7 @@ module OneUpApp
         end
 
         def clear_all
-          self.crud_element_list = []
+          self.crud_element_list.clear
         end
       end
 
