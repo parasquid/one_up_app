@@ -28,7 +28,8 @@ describe OneUpApp::User do
   end
 
   context "user management" do
-    Given(:user_class) { OneUpApp::User.extend(OneUpApp::Contexts::Crud::ClassMethods) }
+    require "spec_helpers/crud_methods"
+    Given(:user_class) { OneUpApp::User.extend(SpecHelpers::CrudMethods) }
 
     context "creating a user" do
       When(:user) { user_class.create(name: "user") }

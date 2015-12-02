@@ -1,4 +1,5 @@
 require "spec_helper"
+require "one_up_app/gift"
 require "one_up_app/user"
 
 describe OneUpApp::Gift do
@@ -47,7 +48,9 @@ describe OneUpApp::Gift do
   end
 
   context "gift management" do
-    Given(:gift_class) { OneUpApp::Gift.extend(OneUpApp::Contexts::Crud::ClassMethods) }
+    require "spec_helpers/crud_methods"
+
+    Given(:gift_class) { OneUpApp::Gift.extend(SpecHelpers::CrudMethods) }
 
     context "creating a gift" do
       When(:gift) { gift_class.create(gift_options) }

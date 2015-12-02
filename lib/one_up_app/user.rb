@@ -1,5 +1,3 @@
-require_dependency "one_up_app/gift"
-
 module OneUpApp
   class User
     extend Forwardable

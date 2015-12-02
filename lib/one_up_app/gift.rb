@@ -1,5 +1,3 @@
-require_dependency "one_up_app/contexts/crud"
-
 module OneUpApp
   class Gift
     extend Forwardable
