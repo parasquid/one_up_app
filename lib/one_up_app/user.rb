@@ -2,14 +2,6 @@ require_dependency "one_up_app/gift"
 
 module OneUpApp
   class User
-    class UserRepository
-      attr_reader :gifts_given, :gifts_received
-      def initialize
-        @gifts_given = []
-        @gifts_received = []
-      end
-    end
-
     attr_reader :name
 
     def initialize(name:, repository: UserRepository.new)
@@ -40,6 +32,14 @@ module OneUpApp
 
     def repository
       @repository
+    end
+
+    class UserRepository
+      attr_reader :gifts_given, :gifts_received
+      def initialize
+        @gifts_given = []
+        @gifts_received = []
+      end
     end
 
   end
