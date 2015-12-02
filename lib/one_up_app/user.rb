@@ -9,9 +9,7 @@ module OneUpApp
       @repository = repository
     end
 
-    def give(receiver, gift:)
-      receiver.receive(gift)
-      gift.given_by = self
+    def give(gift)
       repository.gifts_given << gift
     end
 

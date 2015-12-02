@@ -27,13 +27,13 @@ describe OneUpApp::Gift do
     end
   end
 
-  context "gift giving" do
+  context "gift giving records" do
     Given(:giver) { OneUpApp::User.new(name: "giver") }
     Given(:receiver) { OneUpApp::User.new(name: "receiver") }
     Given(:gift) { OneUpApp::Gift.new(gift_options) }
 
     context "giving to a receiver" do
-      When { giver.give(receiver, gift: gift) }
+      When { giver.give(gift) }
       Then { expect(giver.gifts_given.count).to eq 1 }
       And { expect(giver.gifts_given.first).to eq gift }
     end
@@ -44,27 +44,6 @@ describe OneUpApp::Gift do
       And { expect(receiver.gifts_received.first).to eq gift }
     end
 
-    context "giving to a receiver records that same gift" do
-      When { giver.give(receiver, gift: gift) }
-      Then { expect(receiver.gifts_received.count).to eq 1 }
-      And { expect(receiver.gifts_received.first).to eq gift }
-    end
-
-    context "gift behaviors" do
-      When { giver.give(receiver, gift: gift) }
-
-      context "gift knows from whom they were given" do
-        Then { gift.given_by == giver}
-      end
-
-      context "gift knows to whom they were given" do
-        Then { gift.received_by == receiver}
-      end
-
-      context "gift knows how to present itself" do
-        Then { gift.to_s == "giver gave receiver Lots of love on 2015-11-28.\nThanks for listening :)\n" }
-      end
-    end
   end
 
   context "gift management" do
