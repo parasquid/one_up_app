@@ -1,12 +1,12 @@
 require "spec_helper"
 require "one_up_app/user"
 require "one_up_app/gift"
-require "one_up_app/postman"
+require "one_up_app/interactors/postman"
 
-describe OneUpApp::Postman do
+describe OneUpApp::Interactors::Postman do
   context "sanity check" do
     Given(:gift) { double("gift") }
-    Given(:postman) { OneUpApp::Postman }
+    Given(:postman) { OneUpApp::Interactors::Postman }
     When(:instance) { postman.new(gift) }
     Then { instance != nil }
   end
@@ -22,7 +22,7 @@ describe OneUpApp::Postman do
   Given(:gift) { OneUpApp::Gift.new(gift_options) }
   Given(:giver) { OneUpApp::User.new(name: "giver") }
   Given(:receiver) { OneUpApp::User.new(name: "receiver") }
-  Given(:postman) { OneUpApp::Postman.new(gift)}
+  Given(:postman) { OneUpApp::Interactors::Postman.new(gift)}
   context "giving a gift to a receiver" do
     When { postman.deliver(from: giver, to: receiver) }
 
