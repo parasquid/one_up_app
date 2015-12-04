@@ -1,22 +1,23 @@
 module OneUpApp
   class Postman
-    def initialize(package)
-      @package = package
+    def initialize(gift)
+      @gift = gift
     end
 
     def deliver(from:, to:)
       Array(to).each do |receiver|
-        from.give(package)
-        receiver.receive(package)
-        package.given_by = from
-        package.received_by = receiver
+        from.give(gift)
+        receiver.receive(gift)
+
+        gift.given_by.push(from)
+        gift.received_by.push(receiver)
       end
     end
 
     private
 
-    def package
-      @package
+    def gift
+      @gift
     end
   end
 end

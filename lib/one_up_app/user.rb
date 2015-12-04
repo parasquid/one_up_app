@@ -15,7 +15,6 @@ module OneUpApp
     end
 
     def receive(gift)
-      gift.received_by = self
       repository.gifts_received << gift
     end
 

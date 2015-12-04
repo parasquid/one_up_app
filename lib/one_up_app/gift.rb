@@ -20,27 +20,18 @@ module OneUpApp
       @repository = repository
     end
 
-    def to_s(formatter: StringFormatter)
-      formatter.format(self)
-    end
-
     private
 
     class GiftRepository
       attr_accessor :given_by, :received_by
+      def initialize
+        @given_by = []
+        @received_by = []
+      end
     end
 
     def repository
       @repository
-    end
-
-    class StringFormatter
-      def self.format(gift)
-        response = <<-EOL.gsub(/^\s+/, '')
-          #{gift.given_by.name} gave #{gift.received_by.name} #{gift.description} on #{gift.date_given}.
-          #{gift.message}
-        EOL
-      end
     end
 
   end

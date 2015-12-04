@@ -35,16 +35,13 @@ describe OneUpApp::Postman do
 
     context "gift behaviors" do
       context "gift knows from whom they were given" do
-        Then { gift.given_by == giver}
+        Then { gift.given_by.first == giver}
       end
 
       context "gift knows to whom they were given" do
-        Then { gift.received_by == receiver}
+        Then { gift.received_by.first == receiver}
       end
 
-      context "gift knows how to present itself" do
-        Then { gift.to_s == "giver gave receiver Lots of love on 2015-11-28.\nThanks for listening :)\n" }
-      end
     end
   end
 
