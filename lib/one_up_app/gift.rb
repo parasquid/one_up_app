@@ -1,7 +1,7 @@
 module OneUpApp
   class Gift
     extend Forwardable
-    def_delegators :repository, :given_by, :received_by, :given_by=, :received_by=
+    def_delegators :repository, :given_by, :received_by, :given_on, :given_on=
 
     attr_reader :description, :image_url, :message, :date_given
 
@@ -23,7 +23,7 @@ module OneUpApp
     private
 
     class GiftRepository
-      attr_accessor :given_by, :received_by
+      attr_accessor :given_by, :received_by, :given_on
       def initialize
         @given_by = []
         @received_by = []

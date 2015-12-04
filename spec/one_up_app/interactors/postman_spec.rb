@@ -42,15 +42,19 @@ describe OneUpApp::Interactors::Postman do
         Then { gift.received_by.first == receiver}
       end
 
+      context "gift knows when it was given" do
+        Then { gift.given_on == Date.today }
+      end
     end
   end
 
   context "giving a gift to multiple receivers" do
-    Given(:receiver_2) { OneUpApp::User.new(name: "receiver") }
+    Given(:receiver_2) { OneUpApp::User.new(name: "receiver 2") }
     Given(:receivers) { [receiver, receiver_2] }
     When { postman.deliver(from: giver, to: receivers)}
     Then { receiver.gifts_received.count == 1 }
     Then { receiver_2.gifts_received.count == 1 }
     Then { giver.gifts_given.count == 2 }
   end
+
 end
