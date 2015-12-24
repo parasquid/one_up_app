@@ -1,6 +1,6 @@
 require "spec_helper"
 require "one_up_app/user"
-require "one_up_app/gift"
+require "one_up_app/models/gift"
 require "one_up_app/interactors/postman"
 
 describe OneUpApp::Interactors::Postman do
@@ -19,7 +19,8 @@ describe OneUpApp::Interactors::Postman do
       date_given: "2015-11-28"
     }
   }
-  Given(:gift) { OneUpApp::Gift.new(gift_options) }
+  Given(:gift_class) { OneUpApp::Models::Gift }
+  Given(:gift) { gift_class.new(gift_options) }
   Given(:giver) { OneUpApp::User.new(name: "giver") }
   Given(:receiver) { OneUpApp::User.new(name: "receiver") }
   Given(:postman) { OneUpApp::Interactors::Postman.new(gift)}

@@ -1,8 +1,8 @@
 require "spec_helper"
-require "one_up_app/gift"
+require "one_up_app/models/gift"
 require "one_up_app/user"
 
-describe OneUpApp::Gift do
+describe OneUpApp::Models::Gift do
   Given(:gift_options) {
     {
       description: "Lots of love",
@@ -11,7 +11,8 @@ describe OneUpApp::Gift do
       date_given: "2015-11-28"
     }
   }
-  subject { OneUpApp::Gift.new(gift_options) }
+  subject { OneUpApp::Models::Gift.new(gift_options) }
+  Given(:gift_class) { OneUpApp::Models::Gift }
 
   context "sanity check" do
     it "can initiate the object" do
@@ -31,7 +32,7 @@ describe OneUpApp::Gift do
   context "gift giving records" do
     Given(:giver) { OneUpApp::User.new(name: "giver") }
     Given(:receiver) { OneUpApp::User.new(name: "receiver") }
-    Given(:gift) { OneUpApp::Gift.new(gift_options) }
+    Given(:gift) { gift_class.new(gift_options) }
 
     context "giving to a receiver" do
       When { giver.give(gift) }
@@ -50,7 +51,7 @@ describe OneUpApp::Gift do
   context "gift management" do
     require "spec_helpers/crud_methods"
 
-    Given(:gift_class) { OneUpApp::Gift.extend(SpecHelpers::CrudMethods) }
+    Given(:gift_class) { OneUpApp::Models::Gift.extend(SpecHelpers::CrudMethods) }
 
     context "creating a gift" do
       When(:gift) { gift_class.create(gift_options) }
