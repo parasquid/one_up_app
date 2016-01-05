@@ -7,16 +7,23 @@ module OneUpApp
 
       def deliver(from:, to:, date: Date.today)
         Array(to).each do |receiver|
-          from.give(gift)
-          receiver.receive(gift)
-
-          gift.given_by.push(from)
-          gift.received_by.push(receiver)
-          gift.given_on = date
+          transfer(from, receiver)
+          update_gift_records(from, receiver, date)
         end
       end
 
       private
+
+      def transfer(from, to)
+        from.give(gift)
+        to.receive(gift)
+      end
+
+      def update_gift_records(from, to, date)
+        gift.given_by.push(from)
+        gift.received_by.push(to)
+        gift.given_on = date
+      end
 
       def gift
         @gift
